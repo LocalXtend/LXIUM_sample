@@ -1,9 +1,11 @@
 <!--
 템플릿 사용법
-1. 이 폴더를 복사해 LXIUM_<게임 id>로 이름을 바꿉니다.
+1. 이 저장소(https://github.com/LocalXtend/LXIUM_sample)를 복사해 새 저장소 LocalXtend/LXIUM_<게임 id>를 만들고,
+   LXIUM 저장소의 `optimizeMods/LXIUM_<게임 id>/`에 clone합니다.
 2. 이 파일의 {{GAME_NAME}}을 게임 이름(예: 세피리아)으로, {{GAME_ID}}를 게임 id(예: sephiria)로 모두 바꿉니다.
-   게임 id 규칙: 영문 소문자·숫자·`-`만 사용 (docs/ai/addon.md 3장 `game.id`)
-3. 이 주석을 지웁니다.
+   게임 id 규칙: 영문 소문자·숫자·`-`만 사용 (LXIUM 저장소 docs/ai/addon.md 3장 `game.id`)
+3. README.md를 아래 "Readme 작성법"대로 만들고, .gitignore(bin/ obj/ dist/)를 둡니다.
+4. 이 주석을 지웁니다.
 -->
 ## 에이전트 개요
 {{GAME_NAME}} 최적화 프로젝트 LXIUM_{{GAME_ID}}, 최적화와 모드 호환성을 동시에 지키는 것이 목적.
@@ -16,7 +18,7 @@ ver.txt에 버전을 작성합니다.
 
 ## 애드온 구조 (필수)
 이 프로젝트의 결과물은 LXIUM 런처가 설치·제거하는 애드온 패키지입니다.
-- 규격: LXIUM 저장소의 `docs/ai/addon.md` (이 폴더 기준 `../../docs/ai/addon.md`). 빌드·패키징 작업 전에 반드시 읽고 따릅니다.
+- 규격: LXIUM 저장소의 `docs/ai/addon.md` (https://github.com/LocalXtend/LXIUM/blob/dev/docs/ai/addon.md. LXIUM 저장소의 `optimizeMods/` 안에 clone했으면 `../../docs/ai/addon.md`). 빌드·패키징 작업 전에 반드시 읽고 따릅니다.
 - 이 프로젝트의 값: `id` = `LXIUM_{{GAME_ID}}`, `game.id` = `{{GAME_ID}}`.
 - 규격으로 해결되지 않는 것이 있으면 임의로 확장하지 말고 규격 수정을 먼저 제안합니다.
 
@@ -37,13 +39,16 @@ git은 dev 브렌치를 사용합니다.
 기본적으로 git 행위를 지속적으로 업데이트합니다.
 항상 코드 수정을 할 때마다 git을 합니다.
 
-git 저장소는 LXIUM 저장소 하나입니다 (https://github.com/LocalXtend/LXIUM). 이 폴더에서 `git init`을 하지 않고, 커밋은 LXIUM 저장소에 합니다.
-릴리즈 태그는 `<id>-v<버전>` 형식입니다 (예: `LXIUM_sephiria-v1.0.0`). `id`는 애드온 구조 절의 값입니다.
+git 저장소는 이 프로젝트 전용입니다 (https://github.com/LocalXtend/LXIUM_{{GAME_ID}}). 런처·규격 문서가 있는 LXIUM 저장소와 따로 커밋합니다.
+로컬에서는 LXIUM 저장소의 `optimizeMods/LXIUM_{{GAME_ID}}/`에 clone해 둡니다. LXIUM 저장소는 `optimizeMods/`를 git에서 제외합니다.
+릴리즈 태그·제목은 `<id>-v<버전>` 형식입니다 (예: `LXIUM_sephiria-v1.0.0`). `id`는 애드온 구조 절의 값입니다.
+릴리즈에는 `dist/<id>-<버전>.zip`을 올리고, 본문은 LXIUM 저장소 AGENTS.md의 "git 릴리즈에 관해서" 형식을 따릅니다.
+릴리즈한 뒤 LXIUM 저장소에서 `build.ps1`로 공식 애드온 모음(catalog.json)을 갱신해 커밋합니다 (LXIUM `docs/ai/catalog.md` 4장). 모음의 sha256과 같아야 하므로 릴리즈에는 `build.ps1`이 모은 zip을 그대로 올립니다.
 
 커밋은 GitHub 계정 LocalXtend로 합니다 (`user.name=LocalXtend`, `user.email=285211027+LocalXtend@users.noreply.github.com`).
 
 ## Readme 작성법
-이 폴더의 README.md는 아래 내용을 그대로 씁니다. 버전 줄만 바꿉니다.
+이 저장소의 README.md는 아래 내용을 그대로 씁니다. 버전 줄만 바꿉니다.
 (현재 = 방금 릴리즈한 버전)
 ```
 # LXIUM_{{GAME_ID}}
