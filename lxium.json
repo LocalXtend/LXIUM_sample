@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "LXIUM_{{GAME_ID}}",
+  "name": "LXIUM {{GAME_ID}}",
+  "version": "0.0.0",
+  "description": "{{GAME_NAME}} 최적화",
+  "game": {
+    "id": "{{GAME_ID}}",
+    "name": "{{GAME_NAME}}",
+    "exe": "{{GAME_EXE}}",
+    "steamAppId": 0
+  },
+  "variants": {
+    "bepinex6": {}
+  },
+  "tags": ["performance"]
+}
